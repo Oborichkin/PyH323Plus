@@ -1,3 +1,5 @@
+# distutils: language = c++
+
 """Module to encapsulate tracing functions."""
 
 from c_PTrace cimport c_PTrace_Initialise, c_Timestamp, c_Thread, c_Blocks

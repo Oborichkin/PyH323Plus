@@ -1,4 +1,2 @@
-*.cpp
-*.h
+[B|b]uild
 *.so
-*.o

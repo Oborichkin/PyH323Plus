@@ -1,3 +1,5 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
 from c_PProcess cimport c_PProcess_GetOSName

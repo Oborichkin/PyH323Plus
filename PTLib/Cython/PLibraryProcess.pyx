@@ -1,3 +1,5 @@
+# distutils: language = c++
+
 # We use a library process rather than a normal process
 # since our code is loaded while the Python interpreter
 # is running and does not contain the "main" function by itself

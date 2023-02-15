@@ -1,3 +1,5 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
 cimport cpython.ref as cpy_ref

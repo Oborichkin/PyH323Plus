@@ -1,3 +1,5 @@
+# distutils: language = c++
+
 from c_PString cimport c_PString
 
 cdef class PString:
