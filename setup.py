@@ -5,7 +5,7 @@ from Cython.Build import cythonize
 ext = [
     setuptools.Extension("Address", ["PTLib/Cython/Address.pyx"], libraries=["pt"]),
     setuptools.Extension("PString", ["PTLib/Cython/PString.pyx"], libraries=["pt"]),
-    setuptools.Extension("PIndirectChannel", ["PTLib/Cython/PIndirectChannel.pyx"], libraries=["pt"], include_dirs=["PTLib"]),
+    setuptools.Extension("PIndirectChannel", ["PTLib/Cython/PIndirectChannel.pyx", "PTLib/Wrappers/WrapperPIndirectChannel.cpp"], libraries=["pt"], include_dirs=["PTLib"]),
     setuptools.Extension("PLibraryProcess", ["PTLib/Cython/PLibraryProcess.pyx"], libraries=["pt"]),
     setuptools.Extension("PProcess", ["PTLib/Cython/PProcess.pyx"], libraries=["pt"]),
     setuptools.Extension("PTrace", ["PTLib/Cython/PTrace.pyx"], libraries=["pt"]),

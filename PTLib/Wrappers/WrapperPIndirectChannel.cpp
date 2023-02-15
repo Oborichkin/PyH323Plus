@@ -3,7 +3,7 @@
 #include <Python.h>
 
 #include "WrapperPIndirectChannel.h"
-#include "../CPP/PIndirectChannel_api.h"
+#include "../../Build/PTLib/Cython/PIndirectChannel_api.h"
 
 #include <ptlib.h>
 

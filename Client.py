@@ -64,7 +64,7 @@ class WavChannel(PIndirectChannel):
             try:
                 self._input_wav = wave.open(input_filename, "rb")
             except Exception as e:
-                print "Error opening wav input file:", repr(e)
+                print(f"Error opening wav input file: {e}")
                 self._input_wav = None
         else:
             self._input_wav = None
@@ -74,7 +74,7 @@ class WavChannel(PIndirectChannel):
                 self._output_wav = wave.open(output_filename, "wb")
                 self._output_wav.setparams(WavChannel.DEFAULT_WAVE_PARAMETERS)
             except Exception as e:
-                print "Error opening wav output file:", repr(e)
+                print(f"Error opening wav output file: {e}")
                 self._output_wav = None
         else:
             self._output_wav = None
@@ -172,13 +172,13 @@ class Client(H323EndPoint):
         address = Address(interface)
         listener = H323ListenerTCP(self, address, port)
         if not self.StartListener(listener):
-            print "Failed to start listener on %s:%d" % (address, port)
+            print(f"Failed to start listener on {address}:{port}")
             return False
 
         # Register with a specific gatekeeper
         if gatekeeper is not None:
             if not self.UseGatekeeper(gatekeeper):
-                print "Failed to register with gatekeeper at %s" % (gatekeeper,)
+                print(f"Failed to register with gatekeeper at {gatekeeper}")
                 return False
 
         return True
@@ -186,21 +186,21 @@ class Client(H323EndPoint):
     def OnIncomingCall(self, connection, setupPDU, alertingPDU):
         """Print incoming call and answer immediately."""
 
-        print "Incoming call", connection
+        print("Incoming call", connection)
         return True
 
     def OnConnectionEstablished(self, connection, token):
-        print "Connection established, token =", token
+        print(f"Connection established, token = {token}")
 
     def OnConnectionCleared(self, connection, token):
-        print "Connection cleared, token =", token
+        print(f"Connection cleared, token = {token}")
 
     def OpenAudioChannel(self, connection, isEncoding, bufferSize, codec):
         """Attach a WAV file channel to the audio channel
         opened with the remote end point.
         """
 
-        print "Opening audio channel (%s, %s, %d, %s)" % (connection, isEncoding, bufferSize, codec)
+        print(f"Opening audio channel ({connection}, {isEncoding}, {bufferSize}, {codec})")
 
         if isEncoding:
             # Send data
@@ -214,16 +214,16 @@ class Client(H323EndPoint):
 def run_client(args):
     client = Client(args.input_file, args.output_file)
     if not client.initialise(args.interface, args.port, args.user, args.gatekeeper):
-        print "Error initialising end point"
+        print("Error initialising end point")
         return
 
     if args.listen:
-        print "Waiting for incoming calls for \"%s\"" % (client.GetLocalUserName(),)
+        print(f"Waiting for incoming calls for \"{client.GetLocalUserName()}\"")
     elif args.destination is not None:
-        print "Initiating call to \"%s\"" % (args.destination,)
+        print(f"Initiating call to \"{args.destination}\"")
         client.MakeCall(args.destination, None)
 
-    print "Press enter to quit"
+    print("Press enter to quit")
     raw_input()
 
     client.ClearAllCalls(wait = False)
@@ -234,7 +234,7 @@ def main():
     args = parse_args()
 
     if not args.listen and args.destination is None:
-        print "Invalid operation mode (choose either to listen or to dial)"
+        print("Invalid operation mode (choose either to listen or to dial)")
     else:
         run_client(args)
 
