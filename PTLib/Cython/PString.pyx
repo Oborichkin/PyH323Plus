@@ -35,8 +35,11 @@ cdef class PString:
     def __repr__(self):
         return self.__str__()
 
-    def __str__(self):
+    def __bytes__(self):
         return <const unsigned char *>self.thisptr.operator_const_unsigned_char_p()
+
+    def __str__(self):
+        return bytes(self).decode("utf-8")
 
     def GetLength(self):
         """Determine the length of the null terminated string."""

@@ -30,5 +30,8 @@ cdef class Address:
         if self.thisptr:
             del self.thisptr
 
-    def __str__(self):
+    def __bytes__(self):
         return <const unsigned char *>self.thisptr.operator_pstring()
+
+    def __str__(self):
+        return bytes(self).decode("utf-8")

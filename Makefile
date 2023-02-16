@@ -6,6 +6,12 @@ hooks: venv
 clean:
 	rm -rf PTLib/Cython/*.so H323Plus/Cython/*.so Build build *.egg-info
 
+caller: venv
+	$(VENV)/python Client.py --destination test@127.0.0.1:1720 --port 1721
+
+callee: venv
+	$(VENV)/python Client.py --listen
+
 include Makefile.venv
 Makefile.venv:
 	curl \

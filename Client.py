@@ -19,7 +19,7 @@ def parse_args():
 
     parser.add_argument("-o", "--output-file", type=str, default=None, help="output file name")
     parser.add_argument("-f", "--input-file", type=str, default=None, help="input file name")
-    parser.add_argument("-i", "--interface", type=str, default="*", help="interface (default '*')")
+    parser.add_argument("-i", "--interface", type=str, default=b"*", help="interface (default '*')")
     parser.add_argument("-g", "--gatekeeper", type=str, default=None, help="gatekeeper address")
     parser.add_argument("-u", "--user", type=str, default=None, action="append", help="set local alias name(s)")
     parser.add_argument("-p", "--port", type=int, default=1720, help="listening port (default 1720)")
@@ -95,7 +95,7 @@ class WavChannel(PIndirectChannel):
             # coded to 8-bit by the chosen codec
             b = self._input_wav.readframes(length / 2)
         else:
-            b = "\x00" * length
+            b = b"\x00" * length
         self._last_read_count = length
 
         # Reading should be timed by us to be at
@@ -150,7 +150,7 @@ class Client(H323EndPoint):
 
         # Load all features and capabilities (all codecs)
         self.LoadBaseFeatureSet()
-        self.AddAllCapabilities(0, 0x7FFFFFFF, "*")
+        self.AddAllCapabilities(0, 0x7FFFFFFF, b"*")
         self.AddAllUserInputCapabilities(0, 0x7FFFFFFF)
 
         # Start a listener on the given interface and port. Listener
@@ -209,7 +209,7 @@ def run_client(args):
         print(f'Waiting for incoming calls for "{client.GetLocalUserName()}"')
     elif args.destination is not None:
         print(f'Initiating call to "{args.destination}"')
-        client.MakeCall(args.destination, None)
+        client.MakeCall(args.destination.encode("utf-8"), None)
 
     print("Press enter to quit")
     input()
