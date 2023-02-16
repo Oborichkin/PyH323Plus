@@ -2,9 +2,8 @@
 
 include "ptlib.pxi"
 
-from c_Address cimport c_Address
-
-from c_PString cimport c_PString
+from PTLib.Cython.c_Address cimport c_Address
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef class Address:
     """A class describing an IP address."""
@@ -18,7 +17,7 @@ cdef class Address:
         """
 
         cdef const c_PString *c_dotNotation
-        
+
         if dotNotation is None:
             self.thisptr = new c_Address()
         else:

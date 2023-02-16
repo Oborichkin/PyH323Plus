@@ -1,4 +1,4 @@
-from c_H323TransportAddress cimport c_H323TransportAddress
+from H323Plus.Cython.c_H323TransportAddress cimport c_H323TransportAddress
 
 cdef class H323TransportAddress:
     cdef c_H323TransportAddress *thisptr

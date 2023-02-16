@@ -1,8 +1,10 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
-from c_H323AudioCodec cimport c_H323AudioCodec
+from H323Plus.Cython.c_H323AudioCodec cimport c_H323AudioCodec
 
-from PIndirectChannel cimport PIndirectChannel
+from PTLib.Cython.PIndirectChannel cimport PIndirectChannel
 
 cdef class H323AudioCodec:
     """Implements a specific codec instance used to transfer data

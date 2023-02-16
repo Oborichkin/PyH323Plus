@@ -1,6 +1,8 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
-from c_H323SignalPDU cimport c_H323SignalPDU
+from H323Plus.Cython.c_H323SignalPDU cimport c_H323SignalPDU
 
 cdef class H323SignalPDU:
     """Wrapper class for the H323 signalling channel."""

@@ -1,7 +1,9 @@
-from c_H323Connection cimport c_H323Connection
-from H323EndPoint cimport H323EndPoint
+# distutils: language = c++
 
-from c_PString cimport c_PString
+from H323Plus.Cython.c_H323Connection cimport c_H323Connection
+from H323Plus.Cython.H323EndPoint cimport H323EndPoint
+
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef class H323Connection:
     """This class represents a particular H323 connection between two endpoints."""

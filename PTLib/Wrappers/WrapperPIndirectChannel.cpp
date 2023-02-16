@@ -3,7 +3,7 @@
 #include <Python.h>
 
 #include "WrapperPIndirectChannel.h"
-#include "../../Build/PTLib/Cython/PIndirectChannel_api.h"
+#include "../../build/PTLib/Cython/PIndirectChannel_api.h"
 
 #include <ptlib.h>
 
@@ -14,7 +14,7 @@ WrapperPIndirectChannel::WrapperPIndirectChannel(PyObject *obj): m_obj(obj) {
 
     // Attempt to create the Pythonic object. Manually
     // increase its reference counter if successful
-	if (0 == import_PIndirectChannel()) {
+	if (0 == import_PTLib__Cython__PIndirectChannel()) {
         Py_XINCREF(this->m_obj);
     }
 }

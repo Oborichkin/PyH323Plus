@@ -2,10 +2,10 @@ include "ptlib.pxi"
 
 from cpython.ref cimport PyObject
 
-from c_H323Connection cimport c_H323Connection, c_CallEndReason
-from c_H323ListenerTCP cimport c_H323ListenerTCP
+from H323Plus.Cython.c_H323Connection cimport c_H323Connection, c_CallEndReason
+from H323Plus.Cython.c_H323ListenerTCP cimport c_H323ListenerTCP
 
-from c_PString cimport c_PString
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef extern from "Wrappers/WrapperH323EndPoint.h":
     cdef cppclass c_H323EndPoint "WrapperH323EndPoint":

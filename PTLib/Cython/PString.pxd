@@ -1,6 +1,6 @@
 include "ptlib.pxi"
 
-from c_PString cimport c_PString
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef class PString:
     cdef c_PString *thisptr

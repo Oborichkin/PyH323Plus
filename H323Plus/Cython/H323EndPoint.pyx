@@ -1,20 +1,22 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
 cimport cpython.ref as cpy_ref
 
-from c_H323EndPoint cimport c_H323EndPoint
-from c_H323SignalPDU cimport c_H323SignalPDU
-from H323SignalPDU cimport cast_to_H323SignalPDU
-from c_H323Connection cimport c_H323Connection, c_EndedByLocalUser
-from H323Connection cimport cast_to_H323Connection
-from c_H323AudioCodec cimport c_H323AudioCodec
-from H323AudioCodec cimport cast_to_H323AudioCodec
-from c_H323Channel cimport c_H323Channel
-from H323Channel cimport cast_to_H323Channel
-from H323ListenerTCP cimport H323ListenerTCP
+from H323Plus.Cython.c_H323EndPoint cimport c_H323EndPoint
+from H323Plus.Cython.c_H323SignalPDU cimport c_H323SignalPDU
+from H323Plus.Cython.H323SignalPDU cimport cast_to_H323SignalPDU
+from H323Plus.Cython.c_H323Connection cimport c_H323Connection, c_EndedByLocalUser
+from H323Plus.Cython.H323Connection cimport cast_to_H323Connection
+from H323Plus.Cython.c_H323AudioCodec cimport c_H323AudioCodec
+from H323Plus.Cython.H323AudioCodec cimport cast_to_H323AudioCodec
+from H323Plus.Cython.c_H323Channel cimport c_H323Channel
+from H323Plus.Cython.H323Channel cimport cast_to_H323Channel
+from H323Plus.Cython.H323ListenerTCP cimport H323ListenerTCP
 
-from c_PString cimport c_PString
-from PString cimport cast_to_PString
+from PTLib.Cython.c_PString cimport c_PString
+from PTLib.Cython.PString cimport cast_to_PString
 
 cdef class H323EndPoint:
     """This class manages the H323 endpoint.

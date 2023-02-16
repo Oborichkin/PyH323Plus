@@ -3,7 +3,7 @@
 #include <Python.h>
 
 #include "WrapperH323EndPoint.h"
-#include "../CPP/H323EndPoint_api.h"
+#include "../../build/H323Plus/Cython/H323EndPoint_api.h"
 
 #include <ptlib.h>
 #include <h323.h>
@@ -15,7 +15,7 @@ WrapperH323EndPoint::WrapperH323EndPoint(PyObject *obj): m_obj(obj) {
 
     // Attempt to create the Pythonic object. Manually
     // increase its reference counter if successful
-	if (0 == import_H323EndPoint()) {
+	if (0 == import_H323Plus__Cython__H323EndPoint()) {
         Py_XINCREF(this->m_obj);
     }
 }

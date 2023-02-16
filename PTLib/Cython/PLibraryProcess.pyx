@@ -4,7 +4,7 @@
 # since our code is loaded while the Python interpreter
 # is running and does not contain the "main" function by itself
 
-from c_PLibraryProcess cimport c_PLibraryProcess, c_ReleaseCode
+from PTLib.Cython.c_PLibraryProcess cimport c_PLibraryProcess, c_ReleaseCode
 
 cdef class PLibraryProcess:
     """Class for a process that is a dynamically loaded library."""

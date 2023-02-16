@@ -1,6 +1,8 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
-from c_H323Channel cimport c_H323Channel
+from H323Plus.Cython.c_H323Channel cimport c_H323Channel
 
 cdef class H323Channel:
     """This class describes a logical channel between the two endpoints.

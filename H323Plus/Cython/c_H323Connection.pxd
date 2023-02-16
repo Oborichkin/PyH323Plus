@@ -1,5 +1,5 @@
-from c_H323EndPoint cimport c_H323EndPoint
-from c_PString cimport c_PString
+from H323Plus.Cython.c_H323EndPoint cimport c_H323EndPoint
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef extern from "h323con.h":
     cdef enum c_CallEndReason "H323Connection::CallEndReason":

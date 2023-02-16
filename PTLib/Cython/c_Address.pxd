@@ -1,6 +1,6 @@
 include "ptlib.pxi"
 
-from c_PString cimport c_PString
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef extern from "ptlib/ipsock.h":
     cdef cppclass c_Address "PIPSocket::Address":

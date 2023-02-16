@@ -3,46 +3,41 @@ calls, using a gatekeeper and sending and receiving audio.
 """
 
 import sys
+
 sys.path.append("PTLib/Build")
 sys.path.append("H323Plus/Build")
 
-from PLibraryProcess import PLibraryProcess
-from Address import Address
-from PIndirectChannel import PIndirectChannel
+from PTLib.Cython.PLibraryProcess import PLibraryProcess
+from PTLib.Cython.Address import Address
+from PTLib.Cython.PIndirectChannel import PIndirectChannel
 
-from H323ListenerTCP import H323ListenerTCP
-from H323EndPoint import H323EndPoint
+from H323Plus.Cython.H323ListenerTCP import H323ListenerTCP
+from H323Plus.Cython.H323EndPoint import H323EndPoint
 
-from PTrace import Initialise
+from PTLib.Cython.PTrace import Initialise
 
 import wave
 import time
 import argparse
 
-def parse_args():
-    parser = argparse.ArgumentParser(description='H323 VoIP Client.')
 
-    parser.add_argument('-o', '--output-file', type=str, default=None,
-                        help='output file name')
-    parser.add_argument('-f', '--input-file', type=str, default=None,
-                        help='input file name')
-    parser.add_argument('-i', '--interface', type=str, default='*',
-                        help='interface (default \'*\')')
-    parser.add_argument('-g', '--gatekeeper', type=str, default=None,
-                        help='gatekeeper address')
-    parser.add_argument('-u', '--user', type=str, default=None, action='append',
-                        help='set local alias name(s)')
-    parser.add_argument('-p', '--port', type=int, default=1720,
-                        help='listening port (default 1720)')
+def parse_args():
+    parser = argparse.ArgumentParser(description="H323 VoIP Client.")
+
+    parser.add_argument("-o", "--output-file", type=str, default=None, help="output file name")
+    parser.add_argument("-f", "--input-file", type=str, default=None, help="input file name")
+    parser.add_argument("-i", "--interface", type=str, default="*", help="interface (default '*')")
+    parser.add_argument("-g", "--gatekeeper", type=str, default=None, help="gatekeeper address")
+    parser.add_argument("-u", "--user", type=str, default=None, action="append", help="set local alias name(s)")
+    parser.add_argument("-p", "--port", type=int, default=1720, help="listening port (default 1720)")
 
     group = parser.add_mutually_exclusive_group()
-    group.add_argument('-l', '--listen', action='store_true',
-                       help='listen for incoming calls')
-    group.add_argument('-d', '--destination', type=str, default=None,
-                       help='identifier of destination endpoint')
+    group.add_argument("-l", "--listen", action="store_true", help="listen for incoming calls")
+    group.add_argument("-d", "--destination", type=str, default=None, help="identifier of destination endpoint")
 
     args = parser.parse_args()
     return args
+
 
 class WavChannel(PIndirectChannel):
     """Class for using a WAV file as an indirect channel
@@ -50,7 +45,7 @@ class WavChannel(PIndirectChannel):
     """
 
     SAMPLES_PER_SECOND = 8000
-    DEFAULT_WAVE_PARAMETERS = (1, 2, SAMPLES_PER_SECOND, 40000, 'NONE', 'not compressed')
+    DEFAULT_WAVE_PARAMETERS = (1, 2, SAMPLES_PER_SECOND, 40000, "NONE", "not compressed")
 
     def __init__(self, input_filename=None, output_filename=None):
         """Initialise the channel.
@@ -112,8 +107,7 @@ class WavChannel(PIndirectChannel):
 
         # Reading should be timed by us to be at
         # 8000 samples per second
-        while (time.time() < self._read_previous_time +
-                (1.0 / (WavChannel.SAMPLES_PER_SECOND / (length / 2)))):
+        while time.time() < self._read_previous_time + (1.0 / (WavChannel.SAMPLES_PER_SECOND / (length / 2))):
             time.sleep(0)
         self._read_previous_time = time.time()
 
@@ -132,12 +126,12 @@ class WavChannel(PIndirectChannel):
 
         # Writing should be timed by us to be at
         # 8000 samples per second
-        while (time.time() < self._write_previous_time +
-                (1.0 / (WavChannel.SAMPLES_PER_SECOND / (length / 2)))):
+        while time.time() < self._write_previous_time + (1.0 / (WavChannel.SAMPLES_PER_SECOND / (length / 2))):
             time.sleep(0)
         self._write_previous_time = time.time()
 
         return True
+
 
 class Client(H323EndPoint):
     """A complete VoIP client."""
@@ -163,8 +157,8 @@ class Client(H323EndPoint):
 
         # Load all features and capabilities (all codecs)
         self.LoadBaseFeatureSet()
-        self.AddAllCapabilities(0, 0x7fffffff, '*')
-        self.AddAllUserInputCapabilities(0, 0x7fffffff)
+        self.AddAllCapabilities(0, 0x7FFFFFFF, "*")
+        self.AddAllUserInputCapabilities(0, 0x7FFFFFFF)
 
         # Start a listener on the given interface and port. Listener
         # would be used to make calls and register with the
@@ -204,12 +198,13 @@ class Client(H323EndPoint):
 
         if isEncoding:
             # Send data
-            wav_channel = WavChannel(input_filename = self._input_filename)
+            wav_channel = WavChannel(input_filename=self._input_filename)
         else:
             # Receive data
-            wav_channel = WavChannel(output_filename = self._output_filename)
+            wav_channel = WavChannel(output_filename=self._output_filename)
 
-        return codec.AttachChannel(wav_channel, autoDelete = False)
+        return codec.AttachChannel(wav_channel, autoDelete=False)
+
 
 def run_client(args):
     client = Client(args.input_file, args.output_file)
@@ -218,17 +213,18 @@ def run_client(args):
         return
 
     if args.listen:
-        print(f"Waiting for incoming calls for \"{client.GetLocalUserName()}\"")
+        print(f'Waiting for incoming calls for "{client.GetLocalUserName()}"')
     elif args.destination is not None:
-        print(f"Initiating call to \"{args.destination}\"")
+        print(f'Initiating call to "{args.destination}"')
         client.MakeCall(args.destination, None)
 
     print("Press enter to quit")
     raw_input()
 
-    client.ClearAllCalls(wait = False)
+    client.ClearAllCalls(wait=False)
     # Allow the connection to clear
     time.sleep(1)
+
 
 def main():
     args = parse_args()
@@ -238,7 +234,8 @@ def main():
     else:
         run_client(args)
 
-if __name__ == '__main__':
-    p = PLibraryProcess("", "H323 VoIP Client", 1, 0, 0, 0)
+
+if __name__ == "__main__":
+    p = PLibraryProcess(b"", b"H323 VoIP Client", 1, 0, 0, 0)
 
     main()

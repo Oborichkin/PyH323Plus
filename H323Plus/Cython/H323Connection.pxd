@@ -1,6 +1,6 @@
 include "ptlib.pxi"
 
-from c_H323Connection cimport c_H323Connection
+from H323Plus.Cython.c_H323Connection cimport c_H323Connection
 
 cdef class H323Connection:
     cdef c_H323Connection *thisptr

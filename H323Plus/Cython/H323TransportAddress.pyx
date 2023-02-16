@@ -1,4 +1,6 @@
-from c_H323TransportAddress cimport c_H323TransportAddress
+# distutils: language = c++
+
+from H323Plus.Cython.c_H323TransportAddress cimport c_H323TransportAddress
 
 cdef class H323TransportAddress:
     """String representation of a transport address."""

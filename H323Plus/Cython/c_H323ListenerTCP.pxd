@@ -1,7 +1,7 @@
 include "ptlib.pxi"
 
-from c_H323EndPoint cimport c_H323EndPoint
-from c_Address cimport c_Address
+from H323Plus.Cython.c_H323EndPoint cimport c_H323EndPoint
+from PTLib.Cython.c_Address cimport c_Address
 
 cdef extern from "transports.h":
     cdef cppclass c_H323ListenerTCP "H323ListenerTCP":

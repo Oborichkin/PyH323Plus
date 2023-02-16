@@ -1,6 +1,6 @@
 include "ptlib.pxi"
 
-from c_H323AudioCodec cimport c_H323AudioCodec
+from H323Plus.Cython.c_H323AudioCodec cimport c_H323AudioCodec
 
 cdef class H323AudioCodec:
     cdef c_H323AudioCodec *thisptr

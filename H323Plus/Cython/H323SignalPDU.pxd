@@ -1,6 +1,6 @@
 include "ptlib.pxi"
 
-from c_H323SignalPDU cimport c_H323SignalPDU
+from H323Plus.Cython.c_H323SignalPDU cimport c_H323SignalPDU
 
 cdef class H323SignalPDU:
     cdef c_H323SignalPDU *thisptr

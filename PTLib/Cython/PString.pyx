@@ -1,6 +1,6 @@
 # distutils: language = c++
 
-from c_PString cimport c_PString
+from PTLib.Cython.c_PString cimport c_PString
 
 cdef class PString:
     """The character string class."""

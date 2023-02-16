@@ -1,2 +1,6 @@
 [B|b]uild
 *.so
+*.egg-info
+.venv
+Makefile.venv
+.vscode

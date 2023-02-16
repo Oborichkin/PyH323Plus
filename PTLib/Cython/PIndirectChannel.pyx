@@ -4,7 +4,7 @@ include "ptlib.pxi"
 
 cimport cpython.ref as cpy_ref
 
-from c_PIndirectChannel cimport c_PIndirectChannel, memcpy
+from PTLib.Cython.c_PIndirectChannel cimport c_PIndirectChannel, memcpy
 
 cdef class PIndirectChannel:
     """This is a channel that operates indirectly through another channel(s). This

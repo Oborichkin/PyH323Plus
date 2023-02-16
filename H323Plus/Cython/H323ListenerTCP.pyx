@@ -1,8 +1,10 @@
+# distutils: language = c++
+
 include "ptlib.pxi"
 
-from c_H323ListenerTCP cimport c_H323ListenerTCP
-from H323EndPoint cimport H323EndPoint
-from Address cimport Address
+from H323Plus.Cython.c_H323ListenerTCP cimport c_H323ListenerTCP
+from H323Plus.Cython.H323EndPoint cimport H323EndPoint
+from PTLib.Cython.Address cimport Address
 
 cdef class H323ListenerTCP:
     """This class manages H323 connections using TCP/IP transport."""

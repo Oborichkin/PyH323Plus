@@ -1,6 +1,6 @@
 include "ptlib.pxi"
 
-from c_PIndirectChannel cimport c_PIndirectChannel
+from PTLib.Cython.c_PIndirectChannel cimport c_PIndirectChannel
 
 cdef extern from "codecs.h":
     cdef cppclass c_H323AudioCodec "H323AudioCodec":
