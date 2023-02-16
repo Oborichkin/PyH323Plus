@@ -12,7 +12,7 @@ public:
 
     WrapperH323EndPoint(PyObject *obj);
     ~WrapperH323EndPoint();
-    
+
     virtual PBoolean OnIncomingCall(H323Connection &connection,
                                     const H323SignalPDU &setupPDU,
                                     H323SignalPDU &alertingPDU);

@@ -29,6 +29,6 @@ cdef class Address:
 
         if self.thisptr:
             del self.thisptr
-            
+
     def __str__(self):
         return <const unsigned char *>self.thisptr.operator_pstring()

@@ -2,10 +2,9 @@
 calls, using a gatekeeper and sending and receiving audio.
 """
 
-import sys
-
-sys.path.append("PTLib/Build")
-sys.path.append("H323Plus/Build")
+import wave
+import time
+import argparse
 
 from PTLib.Cython.PLibraryProcess import PLibraryProcess
 from PTLib.Cython.Address import Address
@@ -13,12 +12,6 @@ from PTLib.Cython.PIndirectChannel import PIndirectChannel
 
 from H323Plus.Cython.H323ListenerTCP import H323ListenerTCP
 from H323Plus.Cython.H323EndPoint import H323EndPoint
-
-from PTLib.Cython.PTrace import Initialise
-
-import wave
-import time
-import argparse
 
 
 def parse_args():
@@ -219,7 +212,7 @@ def run_client(args):
         client.MakeCall(args.destination, None)
 
     print("Press enter to quit")
-    raw_input()
+    input()
 
     client.ClearAllCalls(wait=False)
     # Allow the connection to clear

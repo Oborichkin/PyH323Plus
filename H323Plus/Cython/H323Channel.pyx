@@ -24,4 +24,3 @@ cdef H323Channel cast_to_H323Channel(c_H323Channel *c):
     result = cast_H323Channel()
     result.thisptr = c
     return result
-

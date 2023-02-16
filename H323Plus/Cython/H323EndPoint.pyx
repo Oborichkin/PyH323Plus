@@ -32,7 +32,7 @@ cdef class H323EndPoint:
         """Create a new endpoint."""
 
         self.thisptr = new c_H323EndPoint(<cpy_ref.PyObject *>self)
-       
+
     def __dealloc__(self):
         """Destroy endpoint."""
 

@@ -1,3 +1,8 @@
+install: venv hooks
+
+hooks: venv
+	$(VENV)/pre-commit install
+
 clean:
 	rm -rf PTLib/Cython/*.so H323Plus/Cython/*.so Build build *.egg-info
 
