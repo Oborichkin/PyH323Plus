@@ -55,4 +55,5 @@ setup(
     author_email="oborin.p@gmail.com",
     url="https://github.com/Oborichkin/PyH323Plus",
     python_requires=">=3.6",
+    zip_safe=False,
 )
